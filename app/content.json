@@ -6,7 +6,7 @@
     "linkedin": "https://www.linkedin.com/in/paul-caucheteux-100ab510a/",
     "scholar": "https://scholar.google.com/citations?user=xs6sAm4AAAAJ",
     "portrait": "/paul-caucheteux.jpeg",
-    "biography": "I am a first-year PhD student at [CREST](https://crest.science/) / [ENSAE Paris](https://www.ensae.fr/), under the supervision of [Anna Korba](https://akorba.github.io/) and [Clément Bonet](https://clbonet.github.io/). My research interests include generative modeling, optimization over probability distributions, and Wasserstein gradient flows."
+    "biography": "Since 2025, I have been a PhD student at [CREST](https://crest.science/) / [ENSAE Paris](https://www.ensae.fr/), under the supervision of [Anna Korba](https://akorba.github.io/) and [Clément Bonet](https://clbonet.github.io/). My research interests include generative modeling, optimization over probability distributions, and Wasserstein gradient flows."
   },
   "publications": [
     {
@@ -50,8 +50,20 @@
     }
   ],
   "teaching": {
-    "paragraphs": [
-      "I teach tutorials at ENSAE Paris. I taught Optimization to third-year students (3A) in 2025–2026 and am teaching it again in 2026–2027. I am also teaching Fondements mathématiques des probabilités in 2026–2027."
+    "intro": "Tutorials at ENSAE Paris.",
+    "courses": [
+      {
+        "title": "Optimization",
+        "description": "Third-year students (3A)",
+        "years": "2025–2026, 2026–2027",
+        "links": []
+      },
+      {
+        "title": "Fondements mathématiques des probabilités",
+        "description": "",
+        "years": "2026–2027",
+        "links": []
+      }
     ]
   }
 }

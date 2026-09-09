@@ -1,6 +1,12 @@
 import content from "./content.json";
 
 const { profile, publications, presentations, teaching } = content;
+const courses: {
+  title: string;
+  description: string;
+  years: string;
+  links: { label: string; url: string }[];
+}[] = teaching.courses;
 
 // Render only simple Markdown links; all other content remains escaped text.
 function Biography({ text }: { text: string }) {
@@ -73,9 +79,20 @@ export default function Home() {
           </section>
           <section id="teaching" className="work-section" aria-labelledby="teaching-heading">
             <h2 id="teaching-heading">Teaching</h2>
-            <div className="teaching-copy">
-              {teaching.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
-            </div>
+            <p className="teaching-intro">{teaching.intro}</p>
+            <ul className="teaching-list">
+              {courses.map((course) => (
+                <li key={course.title}>
+                  <h3>{course.title}</h3>
+                  <p className="venue">{course.description && <>{course.description} · </>}{course.years}</p>
+                  {course.links.length > 0 && (
+                    <ul className="resource-links" aria-label={`Resources for ${course.title}`}>
+                      {course.links.map((link) => <li key={link.url}><a href={link.url}>{link.label} <span aria-hidden="true">↗</span></a></li>)}
+                    </ul>
+                  )}
+                </li>
+              ))}
+            </ul>
           </section>
         </main>
         <footer><span>{profile.name}</span><a href={`mailto:${profile.email}`}>{profile.email}</a></footer>

@@ -17,7 +17,8 @@ Ouvrez `app/content.json`. Ce fichier contient :
 | `profile.portrait` | Le nom de la photo dans `public/` |
 | `publications` | Les articles, auteurs, année, conférence et liens |
 | `presentations` | Les présentations, lieu, année et type (`Poster`, par exemple) |
-| `teaching.paragraphs` | Le ou les paragraphes d'enseignement |
+| `teaching.intro` | La phrase qui introduit les enseignements |
+| `teaching.courses` | La liste des cours, années, niveaux et ressources |
 
 Modifiez le texte **à l'intérieur des guillemets**, en gardant les virgules, crochets et accolades autour. Une apostrophe simple est autorisée. Si vous ajoutez des guillemets doubles dans le texte, écrivez `\"`.
 
@@ -25,7 +26,7 @@ Pour créer un lien dans la bio, utilisez `[texte affiché](https://adresse-du-l
 
 Pour ajouter une publication ou une présentation, dupliquez une entrée complète entre `{` et `}`, puis changez ses valeurs. Séparez les entrées par une virgule. Pour une présentation sans ressource disponible, utilisez `"links": []`.
 
-Les années d'enseignement sont actuellement 2025–2026 et 2026–2027. Le texte `first-year` dans la bio doit également être actualisé quand nécessaire.
+Les années d'enseignement sont actuellement 2025–2026 et 2026–2027. La bio indique le début de la thèse en 2025.
 
 ## 3. Voir les modifications sur votre Mac
 
@@ -42,6 +43,25 @@ Enregistrez `app/content.json` avec Cmd+S : l'aperçu se met à jour automatique
 ## 4. Photo et documents
 
 Placez une nouvelle photo dans `public/`, puis indiquez son nom dans `profile.portrait`, précédé de `/`. Même principe pour un PDF : placez-le dans `public/` et ajoutez une ressource avec, par exemple, `"label": "Slides"` et `"url": "/slides.pdf"`.
+
+### Ajouter une correction ou un support à un cours
+
+1. Placez votre PDF dans `public/teaching/` (créez ce sous-dossier si nécessaire), par exemple `optimisation-td1-correction.pdf`.
+2. Dans `app/content.json`, trouvez le cours dans `teaching.courses`.
+3. Remplacez son `"links": []` par :
+
+```json
+"links": [
+  {
+    "label": "TD 1 — Solutions",
+    "url": "/teaching/optimisation-td1-correction.pdf"
+  }
+]
+```
+
+Ce nom de PDF est un exemple : utilisez le nom exact du fichier que vous avez ajouté. Le lien apparaîtra sous le cours. Pour plusieurs documents, ajoutez d'autres objets dans `links`, séparés par des virgules. Vous pouvez aussi utiliser une URL complète vers un document déjà en ligne. Laissez `"links": []` lorsqu'aucun document n'est disponible : aucun lien vide ne sera affiché.
+
+Pour ajouter un cours, dupliquez une entrée de `teaching.courses`, puis modifiez `title`, `description`, `years` et `links`. `description` peut être une chaîne vide si le niveau n'est pas précisé.
 
 ## 5. Apparence et structure
 
