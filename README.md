@@ -1,4 +1,10 @@
-# Modifier mon site
+# Paul Caucheteux — site personnel
+
+Site : https://paulcauch.github.io/
+
+Dépôt : https://github.com/Paulcauch/Paulcauch.github.io
+
+## Modifier mon site
 
 Le contenu du site est en anglais. Ce guide explique les modifications courantes.
 
@@ -71,11 +77,48 @@ Pour ajouter un cours, dupliquez une entrée de `teaching.courses`, puis modifie
 
 Pour les changements de contenu courants, seul `app/content.json` est nécessaire.
 
-## 6. Mettre à jour le lien en ligne
+## 6. Publier les modifications avec GitHub
 
-Enregistrer un fichier et lancer l'aperçu modifient la version locale. Le site hébergé ne se met pas à jour automatiquement.
+La publication est automatique après chaque envoi sur la branche `main` du dépôt GitHub. Une modification sauvegardée seulement sur votre Mac reste locale.
 
-Une fois les changements vérifiés, vous pouvez demander ici : « Publie mes modifications locales sur le même site privé ». Cela permet de vérifier et de mettre à jour la version hébergée. Le site reste privé et l'indexation par les moteurs de recherche reste désactivée tant que vous ne demandez pas sa publication publique.
+### Modifier directement sur GitHub
+
+Pour une correction de texte simple :
+
+1. Ouvrez `app/content.json` dans le dépôt GitHub.
+2. Cliquez sur le crayon pour modifier le fichier.
+3. Cliquez sur **Commit changes**, puis validez sur la branche `main`.
+4. Dans l'onglet **Actions**, attendez que **Publish website** soit vert. Le site garde la même adresse.
+
+Pour ajouter un PDF depuis GitHub, utilisez **Add file → Upload files** dans le dossier `public/`, puis ajoutez son lien dans `app/content.json`.
+
+### Modifier sur le Mac
+
+Si vous avez modifié des fichiers directement sur GitHub, commencez par récupérer ces changements, depuis le dossier PersonalSite :
+
+```sh
+git pull --ff-only
+```
+
+Modifiez ensuite les fichiers et vérifiez l'aperçu avec `./Apercu.command`. Pour publier des changements de contenu ou ajouter des documents :
+
+```sh
+git add app/content.json public/
+git commit -m "Update website content"
+git push
+```
+
+Pour des changements de mise en page, ajoutez aussi les fichiers concernés, par exemple `app/page.tsx` et `app/globals.css`, à la commande `git add`.
+
+La compilation et la publication se font sur GitHub. Votre ordinateur peut être éteint une fois l'envoi terminé. Consultez l'onglet **Actions** pour suivre le résultat ; en cas d'échec, la précédente version publiée reste disponible.
+
+Si `git pull --ff-only` signale des modifications locales ou une divergence, conservez vos fichiers et résolvez la situation avant de continuer. Cette commande n'écrase pas votre travail.
+
+## Configuration technique
+
+Le site est exporté en fichiers statiques dans `dist/client/` via `pnpm build`. Le workflow `.github/workflows/pages.yml` publie uniquement ce dossier avec GitHub Pages. Node.js 22 et pnpm 11.19.0 sont utilisés sur GitHub. Pour installer le projet sur un autre ordinateur : installez ces outils, récupérez le dépôt puis lancez `pnpm install --frozen-lockfile`.
+
+Le dossier `.openai/` conserve la référence du premier aperçu privé ; il n'est pas nécessaire pour accéder au site public. La publication courante passe par GitHub Pages.
 
 ## Sources used for the initial draft
 
