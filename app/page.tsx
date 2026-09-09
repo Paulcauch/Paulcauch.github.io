@@ -1,4 +1,14 @@
-import { profile, publications, presentations } from "./content";
+import content from "./content.json";
+
+const { profile, publications, presentations, teaching } = content;
+
+// Render only simple Markdown links; all other content remains escaped text.
+function Biography({ text }: { text: string }) {
+  return text.split(/(\[[^\]]+\]\(https?:\/\/[^\s)]+\))/g).map((part, index) => {
+    const link = part.match(/^\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)$/);
+    return link ? <a key={index} href={link[2]}>{link[1]}</a> : part;
+  });
+}
 
 export default function Home() {
   return (
@@ -6,22 +16,19 @@ export default function Home() {
       <a className="skip-link" href="#about">Skip to content</a>
       <div className="site-shell">
         <header className="site-header">
-          <a className="wordmark" href="#about" aria-label="Paul Caucheteux, home">PC<span aria-hidden="true">.</span></a>
           <nav aria-label="Main navigation">
             <a href="#about">About</a>
             <a href="#publications">Publications</a>
             <a href="#presentations">Presentations</a>
+            <a href="#teaching">Teaching</a>
           </nav>
         </header>
         <main>
           <section id="about" className={`intro ${profile.portrait ? "with-portrait" : ""}`} aria-labelledby="name">
             <div className="intro-content">
-              <p className="eyebrow">{profile.field}</p>
               <h1 id="name">{profile.name}</h1>
-              <p className="role">{profile.role} at <a href="https://crest.science/">CREST</a> / <a href="https://www.ensae.fr/">ENSAE Paris</a></p>
               <div className="bio">
-                <p>I work on generative modeling and optimization in the space of probability distributions, with a particular interest in Wasserstein gradient flows.</p>
-                <p>My supervisors are <a href="https://akorba.github.io/">Anna Korba</a> and <a href="https://clbonet.github.io/">Clément Bonet</a>.</p>
+                <p><Biography text={profile.biography} /></p>
               </div>
               <ul className="profile-links" aria-label="Contact and academic profiles">
                 <li><a href={`mailto:${profile.email}`}>Email <span aria-hidden="true">↗</span></a></li>
@@ -63,6 +70,12 @@ export default function Home() {
                 </li>
               ))}
             </ol>
+          </section>
+          <section id="teaching" className="work-section" aria-labelledby="teaching-heading">
+            <h2 id="teaching-heading">Teaching</h2>
+            <div className="teaching-copy">
+              {teaching.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+            </div>
           </section>
         </main>
         <footer><span>{profile.name}</span><a href={`mailto:${profile.email}`}>{profile.email}</a></footer>

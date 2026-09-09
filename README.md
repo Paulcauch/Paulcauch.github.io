@@ -1,22 +1,61 @@
-# Paul Caucheteux — personal website
+# Modifier mon site
 
-A simple academic page in English, with biography, publications and presentations.
+Le contenu du site est en anglais. Ce guide explique les modifications courantes.
 
-## Updating the content
+## 1. Ouvrir le dossier
 
-- `app/content.ts`: contact/profile links, portrait, publications and presentations.
-- `app/page.tsx`: biography and page structure.
-- `app/globals.css`: typography, colours, spacing and mobile layout.
-- Put the chosen portrait and any PDFs in `public/`, then add their paths to the content.
-- Missing links are omitted. No fictitious publications or download links are shown.
+Ouvrez ce dossier PersonalSite dans un éditeur de code ou de texte brut. Évitez Word ou Pages : ils n'enregistrent pas les fichiers au bon format.
 
-## Development
+## 2. Modifier les textes dans un seul fichier
 
-Use the project's installed package manager: `pnpm dev` and `pnpm build`.
+Ouvrez `app/content.json`. Ce fichier contient :
 
-## Draft status
+| Partie | Ce que vous pouvez modifier |
+| --- | --- |
+| `profile.biography` | Le paragraphe de présentation |
+| `profile.email`, `scholar`, `github`, `linkedin` | Les coordonnées et liens |
+| `profile.portrait` | Le nom de la photo dans `public/` |
+| `publications` | Les articles, auteurs, année, conférence et liens |
+| `presentations` | Les présentations, lieu, année et type (`Poster`, par exemple) |
+| `teaching.paragraphs` | Le ou les paragraphes d'enseignement |
 
-Private preview; search indexing is disabled in `app/layout.tsx` until Paul chooses to publish publicly. The portrait and Scholar URL were supplied by Paul. The ICML poster and presentation links come from the official conference page.
+Modifiez le texte **à l'intérieur des guillemets**, en gardant les virgules, crochets et accolades autour. Une apostrophe simple est autorisée. Si vous ajoutez des guillemets doubles dans le texte, écrivez `\"`.
+
+Pour créer un lien dans la bio, utilisez `[texte affiché](https://adresse-du-lien)`. Exemple : `[CREST](https://crest.science/)`.
+
+Pour ajouter une publication ou une présentation, dupliquez une entrée complète entre `{` et `}`, puis changez ses valeurs. Séparez les entrées par une virgule. Pour une présentation sans ressource disponible, utilisez `"links": []`.
+
+Les années d'enseignement sont actuellement 2025–2026 et 2026–2027. Le texte `first-year` dans la bio doit également être actualisé quand nécessaire.
+
+## 3. Voir les modifications sur votre Mac
+
+Double-cliquez sur `Apercu.command`. Une fenêtre Terminal s'ouvre ; cliquez sur l'adresse locale qu'elle affiche, habituellement `http://localhost:3000/`.
+
+Vous pouvez aussi lancer, depuis le dossier PersonalSite :
+
+```sh
+./Apercu.command
+```
+
+Enregistrez `app/content.json` avec Cmd+S : l'aperçu se met à jour automatiquement. En cas d'erreur juste après une modification, vérifiez d'abord les guillemets et les virgules. Laissez la fenêtre Terminal ouverte pendant les modifications. Pour arrêter l'aperçu, pressez Ctrl+C dans cette fenêtre.
+
+## 4. Photo et documents
+
+Placez une nouvelle photo dans `public/`, puis indiquez son nom dans `profile.portrait`, précédé de `/`. Même principe pour un PDF : placez-le dans `public/` et ajoutez une ressource avec, par exemple, `"label": "Slides"` et `"url": "/slides.pdf"`.
+
+## 5. Apparence et structure
+
+- `app/globals.css` règle les couleurs, tailles et espacements.
+- `app/page.tsx` règle l'ordre des sections et leur structure.
+- `app/layout.tsx` règle le titre affiché dans l'onglet du navigateur et les métadonnées.
+
+Pour les changements de contenu courants, seul `app/content.json` est nécessaire.
+
+## 6. Mettre à jour le lien en ligne
+
+Enregistrer un fichier et lancer l'aperçu modifient la version locale. Le site hébergé ne se met pas à jour automatiquement.
+
+Une fois les changements vérifiés, vous pouvez demander ici : « Publie mes modifications locales sur le même site privé ». Cela permet de vérifier et de mettre à jour la version hébergée. Le site reste privé et l'indexation par les moteurs de recherche reste désactivée tant que vous ne demandez pas sa publication publique.
 
 ## Sources used for the initial draft
 
@@ -30,3 +69,5 @@ The short research biography is an editorial draft based on the paper and should
 
 - https://icml.cc/virtual/2026/poster/61240 — conference presentation and poster resources.
 - https://scholar.google.com/citations?user=xs6sAm4AAAAJ — Scholar profile supplied by Paul.
+
+Teaching content supplied by Paul on 9 September 2026.
