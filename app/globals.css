@@ -43,7 +43,7 @@ h1 { font-family: Georgia, 'Times New Roman', serif; font-size: clamp(2.4rem, 5v
 .bio p { margin: 0 0 1rem; }
 .profile-links { display: flex; flex-wrap: wrap; gap: 0.25rem 1.4rem; list-style: none; padding: 0; margin: 1.55rem 0 0; font-size: 0.875rem; }
 .profile-links a { display: inline-block; padding: 0.2rem 0; }
-.profile-links span, .resource-links span { font-size: 0.875em; margin-left: 0.15rem; }
+.link-arrow { display: inline-block; width: 0.9em; height: 0.9em; margin-left: 0.15rem; vertical-align: -0.1em; }
 .portrait { width: 11.5rem; height: 13.75rem; object-fit: cover; border-radius: 3px; margin-top: 0.25rem; }
 .work-section { border-top: 1px solid var(--border); padding: 2rem 0 2.5rem; }
 h2 { font-family: Georgia, 'Times New Roman', serif; font-size: 1.65rem; line-height: 1.3; font-weight: 400; letter-spacing: -0.015em; margin: 0 0 1.7rem; }

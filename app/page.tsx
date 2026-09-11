@@ -1,3 +1,4 @@
+import { ArrowUpRight } from "lucide-react";
 import content from "./content.json";
 
 const { profile, publications, presentations, teaching } = content;
@@ -37,10 +38,10 @@ export default function Home() {
                 <p><Biography text={profile.biography} /></p>
               </div>
               <ul className="profile-links" aria-label="Contact and academic profiles">
-                <li><a href={`mailto:${profile.email}`}>Email <span aria-hidden="true">↗</span></a></li>
-                {profile.scholar && <li><a href={profile.scholar}>Google Scholar <span aria-hidden="true">↗</span></a></li>}
-                <li><a href={profile.github}>GitHub <span aria-hidden="true">↗</span></a></li>
-                <li><a href={profile.linkedin}>LinkedIn <span aria-hidden="true">↗</span></a></li>
+                <li><a href={`mailto:${profile.email}`}>Email <ArrowUpRight className="link-arrow" aria-hidden="true" focusable="false" strokeWidth={1.75} /></a></li>
+                {profile.scholar && <li><a href={profile.scholar}>Google Scholar <ArrowUpRight className="link-arrow" aria-hidden="true" focusable="false" strokeWidth={1.75} /></a></li>}
+                <li><a href={profile.github}>GitHub <ArrowUpRight className="link-arrow" aria-hidden="true" focusable="false" strokeWidth={1.75} /></a></li>
+                <li><a href={profile.linkedin}>LinkedIn <ArrowUpRight className="link-arrow" aria-hidden="true" focusable="false" strokeWidth={1.75} /></a></li>
               </ul>
             </div>
             {profile.portrait && <img className="portrait" src={profile.portrait} alt="Paul Caucheteux" width="184" height="220" />}
@@ -55,7 +56,7 @@ export default function Home() {
                     <h3><a href={paper.links[0].url}>{paper.title}</a></h3>
                     <p className="authors">{paper.authors.map((author, index) => <span key={author}>{index > 0 && ", "}{author === profile.name ? <strong>{author}</strong> : author}</span>)}</p>
                     <p className="venue">{paper.venue}<span className="distinction">{paper.distinction}</span></p>
-                    <ul className="resource-links" aria-label={`Resources for ${paper.title}`}>{paper.links.map((link) => <li key={link.label}><a href={link.url}>{link.label} <span aria-hidden="true">↗</span></a></li>)}</ul>
+                    <ul className="resource-links" aria-label={`Resources for ${paper.title}`}>{paper.links.map((link) => <li key={link.label}><a href={link.url}>{link.label} <ArrowUpRight className="link-arrow" aria-hidden="true" focusable="false" strokeWidth={1.75} /></a></li>)}</ul>
                   </article>
                 </li>
               ))}
@@ -71,7 +72,7 @@ export default function Home() {
                     <h3>{talk.title}</h3>
                     <p className="venue">{talk.event}</p>
                     <p className="talk-format">{talk.format}</p>
-                    {talk.links.length > 0 && <ul className="resource-links" aria-label={`Resources for ${talk.title}`}>{talk.links.map((link) => <li key={link.label}><a href={link.url}>{link.label} <span aria-hidden="true">↗</span></a></li>)}</ul>}
+                    {talk.links.length > 0 && <ul className="resource-links" aria-label={`Resources for ${talk.title}`}>{talk.links.map((link) => <li key={link.label}><a href={link.url}>{link.label} <ArrowUpRight className="link-arrow" aria-hidden="true" focusable="false" strokeWidth={1.75} /></a></li>)}</ul>}
                   </article>
                 </li>
               ))}
@@ -87,7 +88,7 @@ export default function Home() {
                   <p className="venue">{course.description && <>{course.description} · </>}{course.years}</p>
                   {course.links.length > 0 && (
                     <ul className="resource-links" aria-label={`Resources for ${course.title}`}>
-                      {course.links.map((link) => <li key={link.url}><a href={link.url}>{link.label} <span aria-hidden="true">↗</span></a></li>)}
+                      {course.links.map((link) => <li key={link.url}><a href={link.url}>{link.label} <ArrowUpRight className="link-arrow" aria-hidden="true" focusable="false" strokeWidth={1.75} /></a></li>)}
                     </ul>
                   )}
                 </li>
